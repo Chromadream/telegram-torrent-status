@@ -1,9 +1,9 @@
 {
-  "name": "typescript-boilerplate",
+  "name": "telegram-torrent-status",
   "version": "0.1.0",
-  "description": "TypeScript boilerplate",
+  "description": "Telegram bot to get status of Transmission torrents",
   "main": "index.js",
-  "repository": "https://github.com/Chromadream/typescript-boilerplate",
+  "repository": "https://github.com/Chromadream/telegram-torrent-status",
   "author": "Jonathan Nicholas <Jonathan.Nicholas@protonmail.com>",
   "license": "MIT",
   "private": false,
@@ -47,6 +47,7 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@ctrl/transmission": "^1.6.2",
     "@types/chai": "^4.1.7",
     "@types/express": "^4.16.1",
     "@types/mocha": "^5.2.7",
@@ -57,6 +58,7 @@
     "express": "^4.17.0",
     "mocha": "^6.1.4",
     "moment": "^2.24.0",
-    "sinon": "^7.3.2"
+    "sinon": "^7.3.2",
+    "telegraf": "^3.32.0"
   }
 }

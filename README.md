@@ -1,9 +1,5 @@
-# TypeScript boilerplate
+# Telegram Torrent Status
 
-Personal boilerplate to work with TypeScript projects on Nodejs.
+A simple Telegram bot to obtain current torrent downloads status from Transmission.
 
-Includes Express and Axios for easy start on APIs.
-
-Also includes Mocha, Chai, and Sinon for testing. May also include Karma in the future.
-
-Also enforces coding standard with Prettier and ESLint, and also enforces good commit messages with Commitlint.
+Based on [typescript-boilerplate](https://github.com/Chromadream/typescript-boilerplate)
