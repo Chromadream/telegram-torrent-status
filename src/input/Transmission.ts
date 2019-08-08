@@ -2,6 +2,7 @@ import { TorrentClient } from ".";
 import { Torrent } from "../model";
 import { Transmission } from "@ctrl/transmission";
 import { NormalizedTorrent, AllClientData } from "@ctrl/shared-torrent";
+import { torrentStatus } from "../process";
 
 export class TransmissionClient implements TorrentClient {
   private client: Transmission;
@@ -23,15 +24,11 @@ export class TransmissionClient implements TorrentClient {
           name: x.name,
           eta: x.eta,
           percentDone: x.progress,
-          status: this.torrentStatus(x),
+          status: torrentStatus(x),
           currentSpeed: x.downloadSpeed,
         };
         return output;
       },
     );
-  }
-
-  private torrentStatus(input: NormalizedTorrent): "Downloading" | "Finished" {
-    return input.isCompleted ? "Finished" : "Downloading";
   }
 }
