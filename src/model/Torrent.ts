@@ -3,4 +3,5 @@ export interface Torrent {
   eta: number;
   name: string;
   percentDone: number;
+  currentSpeed: number;
 }

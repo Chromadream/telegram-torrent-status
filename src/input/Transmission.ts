@@ -1,7 +1,7 @@
 import { TorrentClient } from ".";
 import { Torrent } from "../model";
 import { Transmission } from "@ctrl/transmission";
-import { NormalizedTorrent } from "@ctrl/shared-torrent";
+import { NormalizedTorrent, AllClientData } from "@ctrl/shared-torrent";
 
 export class TransmissionClient implements TorrentClient {
   private client: Transmission;
@@ -11,19 +11,24 @@ export class TransmissionClient implements TorrentClient {
   }
 
   public getAll(): Promise<Torrent[]> {
-    return this.client.getAllData().then(value => this.map(value.torrents));
+    return this.client
+      .getAllData()
+      .then((value: AllClientData): Torrent[] => this.map(value.torrents));
   }
 
   private map(input: NormalizedTorrent[]): Torrent[] {
-    return input.map(x => {
-      var output: Torrent = {
-        name: x.name,
-        eta: x.eta,
-        percentDone: x.progress,
-        status: this.torrentStatus(x),
-      };
-      return output;
-    });
+    return input.map(
+      (x: NormalizedTorrent): Torrent => {
+        var output: Torrent = {
+          name: x.name,
+          eta: x.eta,
+          percentDone: x.progress,
+          status: this.torrentStatus(x),
+          currentSpeed: x.downloadSpeed,
+        };
+        return output;
+      },
+    );
   }
 
   private torrentStatus(input: NormalizedTorrent): "Downloading" | "Finished" {

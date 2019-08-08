@@ -1,7 +1,15 @@
-import Express from "express";
+import { Transmission } from "@ctrl/transmission";
+import { TransmissionClient } from "./src/input";
+import { TorrentSettings } from "@ctrl/shared-torrent";
 
-let app = Express();
-app.get("/status", (_, res): void => {
-  res.send({ date: new Date() });
+const client = new Transmission({
+  baseUrl: "http://localhost:9091",
 });
-app.listen(3000);
+const input = new TransmissionClient(client);
+input
+  .getAll()
+  .then(x =>
+    x
+      .filter(x => x.status === "Downloading")
+      .forEach(x => console.log(x.name, x.currentSpeed)),
+  );
