@@ -2,7 +2,7 @@ import { InternalClient } from ".";
 import { Torrent } from "../model";
 import { Transmission } from "@ctrl/transmission";
 import { NormalizedTorrent, AllClientData } from "@ctrl/shared-torrent";
-import { torrentStatus } from "../process";
+import { torrentStatus, simpleTime } from "../process";
 
 export class TransmissionClient implements InternalClient {
   private client: Transmission;
@@ -22,7 +22,7 @@ export class TransmissionClient implements InternalClient {
       (x: NormalizedTorrent): Torrent => {
         var output: Torrent = {
           name: x.name,
-          eta: x.eta,
+          eta: simpleTime(x.eta),
           percentDone: x.progress,
           status: torrentStatus(x),
           currentSpeed: x.downloadSpeed,

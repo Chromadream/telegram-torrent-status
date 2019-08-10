@@ -1,6 +1,8 @@
+import { SimpleTime } from "./SimpleTime";
+
 export interface Torrent {
   status: Status;
-  eta: number;
+  eta: SimpleTime;
   name: string;
   percentDone: number;
   currentSpeed: number;
