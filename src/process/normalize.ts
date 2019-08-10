@@ -11,4 +11,8 @@ const torrentStatus = (torrent: NormalizedTorrent): Status => {
   return "Downloading";
 };
 
-export { torrentStatus };
+const fileSize = (torrent: NormalizedTorrent): number => {
+  return torrent.downloadSpeed / 1000;
+};
+
+export { torrentStatus, fileSize };

@@ -1,3 +1,3 @@
-export { filterForCompleted, filterForDownloading } from "./downloading";
+export { filterForCompleted, filterForDownloading } from "./filter";
 export { sortByAscendingName, sortByDescendingName } from "./sort";
-export { torrentStatus } from "./normalize";
+export { torrentStatus, fileSize } from "./normalize";
