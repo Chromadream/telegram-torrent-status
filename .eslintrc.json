@@ -22,5 +22,13 @@
         "indent": "off",
         "@typescript-eslint/indent": ["error", 2],
         "no-console": "off"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.test.ts"],
+            "rules": {
+                "no-undef":"off"
+            }
+        }
+    ]
 }
