@@ -22,7 +22,7 @@ export class TransmissionClient implements InternalClient {
       (x: NormalizedTorrent): Torrent => {
         var output: Torrent = {
           name: x.name,
-          eta: simpleTime(x.eta),
+          eta: !x.isCompleted ? simpleTime(x.eta) : null,
           percentDone: x.progress,
           status: torrentStatus(x.state),
           currentSpeed: currentSpeed(x.downloadSpeed),

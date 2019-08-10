@@ -1,4 +1,10 @@
-const ETAs = {
+import { SimpleTime } from "../../src/model";
+
+interface ETA {
+  [id: string]: SimpleTime;
+}
+
+const ETAs: ETA = {
   "1d": {
     days: 1,
     hours: 0,

@@ -2,23 +2,33 @@ import { expect } from "chai";
 import { torrentList } from "../../src/transform";
 import { Torrent } from "../../src/model";
 import { describe, it } from "mocha";
+import os from "os";
+import { torrents } from "../testData";
 
-describe("Transformers", () => {
-  describe("texts", () => {
-    it("return correct string for single Downloading file", done => {
-      const list: Torrent[] = [
-        {
-          status: "Downloading",
-          eta: { days: 0, hours: 0, minutes: 0, seconds: 3, total: 3 },
-          name: "sample torrent.mkxv",
-          percentDone: 50,
-          currentSpeed: 300,
-        },
-      ];
-      const expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}% (3s@${list[0].currentSpeed}kB/s)`;
-      const actual = torrentList(list);
-      expect(actual).to.equal(expected);
-      done();
-    });
+describe("Text transformation", () => {
+  it("returns correct string for single Downloading file", done => {
+    const list: Torrent[] = [torrents["short download"]];
+    const expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}% (59s@${list[0].currentSpeed}kB/s)`;
+    const actual = torrentList(list);
+    expect(actual).to.equal(expected);
+    done();
+  });
+  it("returns correct string for single Finished file", done => {
+    const list: Torrent[] = [torrents.finished];
+    const expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}%`;
+    const actual = torrentList(list);
+    expect(actual).to.equal(expected);
+    done();
+  });
+  it("return correct string for multiple files", done => {
+    const list: Torrent[] = [
+      torrents["short download"],
+      torrents["longer download"],
+    ];
+    let expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}% (59s@${list[0].currentSpeed}kB/s)${os.EOL}`;
+    expected += `${list[1].name} ${list[1].status} ${list[1].percentDone}% (1h 1m 1s@${list[1].currentSpeed}kB/s)`;
+    const actual = torrentList(list);
+    expect(actual).to.equal(expected);
+    done();
   });
 });
