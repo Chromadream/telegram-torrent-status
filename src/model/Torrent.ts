@@ -1,4 +1,4 @@
-import { SimpleTime } from "./SimpleTime";
+import { Status, SimpleTime } from ".";
 
 export interface Torrent {
   status: Status;
@@ -7,5 +7,3 @@ export interface Torrent {
   percentDone: number;
   currentSpeed: number;
 }
-
-export type Status = "Downloading" | "Finished" | "Queued";

@@ -1,18 +1,23 @@
-import { NormalizedTorrent, TorrentState } from "@ctrl/shared-torrent";
+import { TorrentState } from "@ctrl/shared-torrent";
 import { Status } from "../model";
 
-const torrentStatus = (torrent: NormalizedTorrent): Status => {
-  if (torrent.isCompleted) {
-    return "Finished";
+const torrentStatus = (state: TorrentState): Status => {
+  switch (state) {
+    case TorrentState.downloading:
+      return "Downloading";
+    case TorrentState.seeding:
+      return "Finished";
+    case TorrentState.error:
+      return "Error";
+    case TorrentState.queued:
+      return "Queued";
+    default:
+      return "Unknown";
   }
-  if (torrent.state == TorrentState.queued) {
-    return "Queued";
-  }
-  return "Downloading";
 };
 
-const fileSize = (torrent: NormalizedTorrent): number => {
-  return torrent.downloadSpeed / 1000;
+const currentSpeed = (torrentSpeed: number): number => {
+  return torrentSpeed / 1000;
 };
 
-export { torrentStatus, fileSize };
+export { torrentStatus, currentSpeed };
