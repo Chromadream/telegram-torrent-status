@@ -15,7 +15,7 @@ describe("Transformers", () => {
           currentSpeed: 300,
         },
       ];
-      const expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}% (${list[0].eta.total}@${list[0].currentSpeed}kB/s)`;
+      const expected = `${list[0].name} ${list[0].status} ${list[0].percentDone}% (3s@${list[0].currentSpeed}kB/s)`;
       const actual = torrentList(list);
       expect(actual).to.equal(expected);
       done();
