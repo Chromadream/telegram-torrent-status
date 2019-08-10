@@ -1,2 +1,2 @@
-export { TorrentClient } from "./TorrentClient";
+export { InternalClient } from "./TorrentClient";
 export { TransmissionClient } from "./Transmission";

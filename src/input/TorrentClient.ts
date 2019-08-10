@@ -1,5 +1,5 @@
 import { Torrent } from "../model";
 
-export interface TorrentClient {
+export interface InternalClient {
   getAll(): Promise<Torrent[]>;
 }

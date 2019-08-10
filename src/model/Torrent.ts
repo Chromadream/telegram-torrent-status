@@ -1,7 +1,9 @@
 export interface Torrent {
-  status: "Downloading" | "Finished";
+  status: Status;
   eta: number;
   name: string;
   percentDone: number;
   currentSpeed: number;
 }
+
+export type Status = "Downloading" | "Finished" | "Queued";

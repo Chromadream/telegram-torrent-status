@@ -1,1 +1,1 @@
-export { Torrent } from "./Torrent";
+export { Torrent, Status } from "./Torrent";

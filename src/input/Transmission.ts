@@ -1,10 +1,10 @@
-import { TorrentClient } from ".";
+import { InternalClient } from ".";
 import { Torrent } from "../model";
 import { Transmission } from "@ctrl/transmission";
 import { NormalizedTorrent, AllClientData } from "@ctrl/shared-torrent";
 import { torrentStatus } from "../process";
 
-export class TransmissionClient implements TorrentClient {
+export class TransmissionClient implements InternalClient {
   private client: Transmission;
 
   public constructor(client: Transmission) {
